@@ -1,0 +1,32 @@
+{% extends "main_template.html" %}
+
+
+{% block title %}{{ project['name'] }} details{% endblock %}
+
+{% block main %}
+  <div class="container">
+    <br>
+    <h4 class="text-center">Protocol details (Llama data):</h4>
+    <br>
+    <img class="rounded" src="\{{ project['img'] }}" alt="{{ project['name'] }} image" style="width:20%" />
+    <br>
+    <ul class="list-group list-group-flush">
+
+      <li class="list-group-item">Name:   {{ project['name'] }}</li>
+      <li class="list-group-item">Symbol:   {{ project['symbol'] }}</li>
+      <a class="list-group-item list-group-item-action" href="{{ project['url'] }}">URL:   {{ project['url'] }}</a>
+      <li class="list-group-item">Chain:   {{ project['chain'] }}</li>
+      <li class="list-group-item">Category:   {{ project['category'] }}</li>
+      <li class="list-group-item">Description:   {{project['description'] }}</li>
+      <li class="list-group-item">Ethereum Address:   {{ project['address'] }}</li>
+      <li class="list-group-item">Current TVL:   {{ project['tvl'] }} USD</li>
+      <li class="list-group-item">TVL change in 1 hour:   {{ project['change_1h'] }} %</li>
+      <li class="list-group-item">TVL change in 1 day:   {{ project['change_1d'] }} %</li>
+      <li class="list-group-item">TVL change in 7 days:   {{ project['change_7d'] }} %</li>
+      <li class="list-group-item">Number of Audits:   {{ project['audits'] }}</li>
+      <li class="list-group-item">Audit Note:   {{ project['audit_note'] }}</li>
+    </ul>
+  </div>
+{% endblock %}
+
+{% block footer %}&#169 Das Machine Design{% endblock %}

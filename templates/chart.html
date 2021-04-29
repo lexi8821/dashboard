@@ -1,0 +1,7 @@
+<canvas id="myChart1" height="600" width="800"></canvas>
+<script type="text/javascript" src="static/chart1.js"></script> 
+<script>
+  const labels = {{ names | safe }};
+  const usdsx = {{ usds | safe }};
+  createChart("myChart1", labels, usdsx);
+</script>

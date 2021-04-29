@@ -1,0 +1,51 @@
+{% extends "main_template.html" %}
+
+{% block title %}Protocols{% endblock %}
+
+{% block main %}
+  <div class="container-fluid">
+    <div class="container">
+      <br>
+  		<h4 class="text-center">DeFi Projects (Llama source)</h4>
+      <br>
+      <form class="form-group" action="/protocols" method="POST">
+        <div class="form-row">
+          <div class="col col-sm-2 text-sm-right">
+            <label class="col-form-label" for="sorter_form"> Select projects order: </label>
+          </div>
+          <div class="col col-sm-2">
+            <select class="selectpicker form-control" name="sorter_form">
+              {% for s in sorting_options %}
+              <option value="{{ s[0] }}" {% if s[0] == selection %}selected{% endif %}>{{ s[1] }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="col col-sm-2">
+            <button type="submit" class="btn btn-primary">Select</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        {% for project in projects %}
+          <div class="col-sm-3">
+            <div class="card bg-light text-dark text-center mb-3" style="depth: 18rem;">
+              <div class="card-body">
+                <img class="card-img-top" src="{{ project['img'] }}" alt="{{ project['name'] }}" style="width:60%" />
+                <h5 class="card-title text-primary">{{ project['name'] }}</h5>
+                <p class="card-text">Symbol: {{ project['symbol'] }}</p>
+                <p class="card-text">TVL: {{ project['tvl'] }}</p>
+                <p><a class="card-link" href="{{ project['url'] }}">website</a></p>
+                <p><a href="{{ project['lnk'] }}" class="btn btn-primary">Details</a><p>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block footer %}&#169 Das Machine Design{% endblock %}

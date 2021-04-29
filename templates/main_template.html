@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src='static/chart.min.js'></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+  <body>
+    <div class="jumbotron text-center" id="jumbotron-welcome">
+      <h1>DeFi Dashboard</h1>
+      <p>The only DeFi dashboard in town!</p>
+    </div>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-center">
+      <a class="navbar-brand" href="/">Dash</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation">
+        <span class="navbar-toogler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navigation">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/protocols"> Protocols</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/projects"> Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/market"> Market</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/tvl"> TVL</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/lending"> Lending</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/rates"> Rates</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/learning"> Learning</a>
+          </li>
+
+        </ul>
+        <ul class="navbar-nav pull-right">
+          <li class="nav-item">
+            <a class="nav-link" href="/about"> About</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    {% block main %}{% endblock %}
+
+    <div class="jumbotron text-center" style="margin-bottom:0">
+      <p>{% block footer %}{% endblock %}</p>
+    </div>
+  </body>
+</html>

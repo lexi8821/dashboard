@@ -1,0 +1,39 @@
+{% extends "main_template.html" %}
+
+
+{% block title %}Lending{% endblock %}
+
+{% block main %}
+  <div class="container-fluid">
+      <div class="container">
+        <br>
+        <h4 class="text-center">Info on DeFi lending projects</h4>
+        <br>
+
+        <table class="table">
+          <tr>
+            <th scope="col">Project</th>
+            <th scope="col">Lending Rate</th>
+            <th scope="col">Borrow Rate</th>
+          </tr>
+          {% for project in projects %}
+          <tr>
+            <th scope="row">{{ project.name }}</th>
+            <td id="rate" onload="formatPercentage();">{{  project.lend_rates.composite }}%</td>
+            <td>{{ project.borrow_rates.composite }}%</td>
+          </tr>
+          {% endfor %}
+        </table>
+
+
+    </div>
+  </div>
+  <script type="text/javascript">
+    function formatPercentage() {
+      var initVal = document.getElementById("rate").innerHTML;
+      console.log(initVal);
+    }
+  </script>
+{% endblock %}
+
+{% block footer %}&#169 Das Machine Design{% endblock %}

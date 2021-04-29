@@ -1,0 +1,42 @@
+{% extends "main_template.html" %}
+
+{% block title %}TVL{% endblock %}
+
+{% block main %}
+  <div class="container-fluid">
+    <div class="container">
+      <br>
+      <h4 class="text-center">Current TVL (Total Value Locked) {% if selection != 'none' %}of {{ selection }}{% endif %}</h4>
+      <br>
+      <div class="row pl-4 pb-3">
+        <form class="form-inline" method="post" action="/tvl">
+          <div class="form-group">
+            <div class="input-group">
+              <label for="protSelect" class="mr-3"> Token</label>
+              <select name="protSelect" class="selectpicker form-control" id=protSelect">
+                {% for name in protocols %}
+                  <option class="dropdown-item" value="{{ name }}" {% if name==selection %} selected {% endif %}>{{ name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <button class="btn btn-primary ml-3" type="submit">Get data</button>
+        </form>
+      </div>
+      {% if selection %}
+      <div class="row pl-4 pb-3">
+        <canvas id="myChart" height="400" width="600"></canvas>
+        <script type="text/javascript" src="static/c_history.js"></script>
+        <script>
+          var labels = {{ labels | safe }};
+          var values = {{ values | safe }};
+          CreateHistoryChart("myChart", labels, values);
+        </script>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}&#169 Das Machine Design{% endblock %}

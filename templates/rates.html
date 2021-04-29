@@ -1,0 +1,64 @@
+{% extends "main_template.html" %}
+
+
+{% block title %}Lending Rates for {}{% endblock %}
+
+{% block main %}
+  <div class="container-fluid">
+    <div class="container">
+      <br>
+      <h4 class="text-center">Lending Rates</h4>
+      <br>
+      <form class="form-group" action="{{ url_for('rates') }}" method="post">
+        <div class="form-row">
+          <div class="col">
+            <label for="t_picker" class="col-xl-1 col-form-label col-form-label-xl">Token</label>
+          </div>
+          <div class="col">
+            <select class="selectpicker form-control" name="t_picker" id="t_picker">
+              <option value="none" selected disabled hidden>Select token</option>
+              {% for token in tokens %}
+                <option value="{{ token }}" {% if token == selection %}selected{% endif %}>{{ token }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="col">
+            <label for="t_amount" class="col-xl-1 col-form-label col-form-label-xl">Amount</label>
+          </div>
+          <div class="col">
+            <input class="form-control" type="text" name="t_amount" id="t_amount" placeholder="1000"></input>
+          </div>
+          <div class="col">
+            <button class="btn btn-primary" type="submit">Get Data</button>
+          </div>
+        </div>
+      </form
+    </div>
+
+    {% if rates %}
+    <div class="container">
+      <br>
+      <h5 class="text-center">Current exchanges accepting {{ selection }}</h5>
+      <br>
+      <div class="row">
+        {% for exchange in rates.exchanges %}
+          <div class="col-sm-3">
+            <div class="card bg-light text-dark text-center mb-3">
+              <div class="card-body">
+                <h5 class="card-title text-primary">{{ exchange.name }}</h5>
+                <p class="card-text">Borrow Rate: {{ exchange.borrow.rate }}</p>
+                <p class="card-text">Monthly Amount: {{ exchange.borrow.monthlyAmount }}%</p>
+                <p class="card-text">Lend Rate: {{ exchange.lend.rate }}</p>
+                <p class="card-text">Monthly Amount: {{ exchange.lend.monthlyAmount }}%</p>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+  </div>
+
+{% endblock %}
+
+{% block footer %}&#169 Das Machine Design{% endblock %}

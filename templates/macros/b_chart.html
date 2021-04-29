@@ -1,0 +1,10 @@
+{% macro b_chart(chart_name="", chart_names="", chart_usds="", select_denom="") -%}
+  <canvas id="{{ chart_name }}" height="600" width="800" ></canvas>
+  <script type="text/javascript" src="static/chart1.js"></script>
+  <script>
+    var labels = {{ chart_names | safe }};
+    var usdsx = {{ chart_usds | safe }};
+    var selected = '{{ select_denom | safe }}';
+    createChart("{{ chart_name }}", labels, usdsx, selected);
+  </script>
+{%- endmacro %}

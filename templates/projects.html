@@ -1,0 +1,42 @@
+{% extends "main_template.html" %}
+{% import "macros/b_chart.html" as bc %}
+
+{% block title %}Projects{% endblock %}
+
+{% block main %}
+  <br>
+  <h4 class="text-center">Overall comparison of DeFi projects based on the current {{ selection }} TVL (Total Value Locked)</h4>
+  <div class="row pl-3 pt-3">
+    <div class="col-xl-10"></div>
+    <div class="col-xl-2">
+      <form name="f_denom" action="/projects" method="POST">
+        <select class="selectpicker" name="f_denom_form">
+          {% for d in denominations %}
+          <option value="{{ d }}" {% if d == selection %}selected{% endif %}>{{ d }}</option>
+          {% endfor %}
+        </select>
+        <button type="submit" class="btn btn-primary">Select</button>
+      </form>
+    </div>
+  </div>
+  <!-- <div class="container-xl" style="margin-top:30px"> -->
+    <div class="row pl-3 pt-3">
+      <div class="col-xl-6">
+        {{ bc.b_chart(chart_name="myChart1", chart_names=names[0], chart_usds=usds[0], select_denom=selection) }}
+      </div>
+      <div class="col-xl-6">
+        {{ bc.b_chart(chart_name="myChart2", chart_names=names[1], chart_usds=usds[1], select_denom=selection) }}
+      </div>
+    </div>
+    <div class="row pl-3 pt-3">
+      <div class="col-xl-6">
+        {{ bc.b_chart(chart_name="myChart3", chart_names=names[2], chart_usds=usds[2], select_denom=selection) }}
+      </div>
+      <div class="col-xl-6">
+        {{ bc.b_chart(chart_name="myChart4", chart_names=names[3], chart_usds=usds[3], select_denom=selection) }}
+      </div>
+    </div>
+  <!-- </div> -->
+{% endblock %}
+
+{% block footer %}&#169 Das Machine Design{% endblock %}
