@@ -1,0 +1,52 @@
+{% macro collapsibleHead(items, text='') -%}
+  <div class="col col-sm-3">
+    <a href=".multi-collapse" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="{{ items }}">
+      {{ text }}
+    </a>
+  </div>
+{%- endmacro %}
+
+{% macro collapsibleItems(name, value, valueETH, valueUSD) -%}
+  <div class="collapse multi-collapse" id="{{ name }}">
+    <div class="row">
+      <div class="col col-sm-3">
+        {{ name }}
+      </div>
+      <div class="col col-sm-3">
+        {{ value }}{% if value %}%{% else %}NA{% endif %}
+      </div>
+      <div class="col col-sm-3">
+        {{valueETH }}{% if valueETH %}%{% else %}NA{% endif %}
+      </div>
+      <div class="col col-sm-3">
+        {{valueUSD }}{% if valueUSD %}%{% else %}NA{% endif %}
+      </div>
+    </div>
+  </div>
+{%- endmacro %}
+
+{% macro make_collapse(items, text='') -%}
+  <div class="col col-sm-3">
+    <a href=".multi-collapse" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="{{ items }}">
+      {{ text }}
+    </a>
+  </div>
+  {% for project in projects %}
+    <div class="collapse multi-collapse" id="{{ name }}">
+      <div class="row">
+        <div class="col col-sm-3">
+          {{ name }}
+        </div>
+        <div class="col col-sm-3">
+          {{ value }}{% if value %}%{% else %}NA{% endif %}
+        </div>
+        <div class="col col-sm-3">
+          {{valueETH }}{% if valueETH %}%{% else %}NA{% endif %}
+        </div>
+        <div class="col col-sm-3">
+          {{valueUSD }}{% if valueUSD %}%{% else %}NA{% endif %}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+{%- endmacro %}

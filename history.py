@@ -31,12 +31,23 @@ def create_dataset(history_data, value_point='tvlUSD'):
         return "Selected value point is not in the downloaded dataset."
 
 if __name__ == '__main__':
-    project = 'mstable'
+    project = 'alpha-homora'
     period = 'all'
-    h = get_history(project, period, resolution='hours')
+    resolution = 'days'
+    #h = get_history(project, period, resolution='hours')
     #for i in h:
     #    i['timestamp'] = convert_timestamp(i['timestamp'])
     #ho = [convert_timestamp(i['timestamp']) for i in h]
-    data = create_dataset(h)
+    #data = create_dataset(h)
     #for i in range(30):
     #    print(data[i][0], ' - ', format(data[i][1], ',d'))
+    base_url = 'https://data-api.defipulse.com/api/v1/'
+    added_url = 'defipulse/api/GetHistory'
+    params = {
+        'api-key': api_key('defipulse'),
+        'project': project,
+        'period': period,
+        'resolution': resolution
+    }
+    r = requests.get(base_url + added_url, params=params)
+    print(r)
